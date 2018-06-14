@@ -7,14 +7,21 @@ public class RepositorioClienteArray implements RepositorioCliente {
         clientes = new Cliente[tam];
         this.Indice = 0;
     }
-    public void inserir (Cliente cliente) throws RepositorioCheioException {
+    public void inserir (Cliente cliente) {
         if (this.Indice != clientes.length) {
             clientes[this.Indice] = cliente;
             this.Indice++;
-        } else throw new RepositorioCheioException(cliente);
+        } else {
+        	Cliente[] aux = new Cliente[2 * clientes.length];
+        	for (int a = 0; a < this.Indice; a++) {
+        		aux[a] = clientes[a];
+        	}
+        	this.clientes = aux;
+        	inserir(cliente);
+        }
     }
-    public void remorer (Cliente cliente) throws ClienteNaoExisteException {
-        if (procurar(cliente.getCPF()) != null) {
+    public void remover (Cliente cliente) throws ClienteNaoExisteException {
+        if (existe(cliente.getCPF())) {
             boolean removeu = false;
             for (int b = 0; b < this.Indice; b++) {
                 if (clientes[b].getCPF().equals(cliente.getCPF())) {
@@ -28,23 +35,36 @@ public class RepositorioClienteArray implements RepositorioCliente {
                 }
             }
             this.Indice--;
-        } else throw new ClienteNaoExisteException(cliente);
+        } else throw new ClienteNaoExisteException(cliente.getCPF());
     }
-    public Cliente procurar (String cpf) {
-        for (int a = 0; a < this.Indice; a++) {
-            if (clientes[a].getCPF().equals(cpf)) {
-                return clientes[a];
+    public Cliente procurar (String cpf) throws ClienteNaoExisteException {
+        boolean caso = existe(cpf);
+        if (caso) {
+        	for (int a = 0; a < this.Indice; a++) {
+                if (clientes[a].getCPF().equals(cpf)) {
+                    return clientes[a];
+                }
             }
-        }
-        return null;
+        } else throw new ClienteNaoExisteException(cpf);
+    	return null;
     }
     public void atualizar (Cliente cliente) throws ClienteNaoExisteException {
-        if (procurar(cliente.getCPF()) != null) {
+        if (existe(cliente.getCPF())) {
             for (int a = 0; a < this.Indice; a++) {
                 if (clientes[a].getCPF().equals(cliente.getCPF())) {
                     clientes[a] = cliente;
                 }
             }
-        } else throw new ClienteNaoExisteException(cliente);
+        } else throw new ClienteNaoExisteException(cliente.getCPF());
+    }
+    
+    public boolean existe (String numero) {
+    	boolean achou = false;
+    	for (int a = 0; a < this.Indice; a++) {
+    		if (clientes[a].getCPF().equals(numero)) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 }
