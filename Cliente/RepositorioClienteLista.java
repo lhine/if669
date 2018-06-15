@@ -13,7 +13,7 @@ public class RepositorioClienteLista implements RepositorioCliente {
     	   this.prox = new RepositorioClienteLista();
        } else prox.inserir(cliente);
     }
-    public void remover (Cliente cliente) throws ClienteNaoExisteException {
+    public void remover (Cliente cliente) {
     	if (this.cliente != null) {
     		if (this.cliente.getCPF().equals(cliente.getCPF())) {
         		this.cliente = this.prox.cliente;
@@ -23,9 +23,8 @@ public class RepositorioClienteLista implements RepositorioCliente {
         		this.prox.remover(cliente);
         	}
     	} 
-    	throw new ClienteNaoExisteException(cliente.getCPF());
     }
-    public Cliente procurar (String cpf) throws ClienteNaoExisteException {
+    public Cliente procurar (String cpf) {
     	if (this.cliente != null) {
     		if (this.cliente.getCPF().equals(cpf)) {
     			return this.cliente;
@@ -33,10 +32,10 @@ public class RepositorioClienteLista implements RepositorioCliente {
     		if (this.prox.cliente != null) {
     			this.prox.procurar(cpf);
     		}
-    	} 
-    	throw new ClienteNaoExisteException(cpf);
+    	}
+    	return null;
     }
-    public void atualizar (Cliente cliente) throws ClienteNaoExisteException {
+    public void atualizar (Cliente cliente) {
     	if (this.cliente != null) {
     		if (this.cliente.getCPF().equals(cliente.getCPF())) {
     			this.cliente = cliente;
@@ -45,7 +44,6 @@ public class RepositorioClienteLista implements RepositorioCliente {
     			this.prox.atualizar(cliente);
     		}
     	}
-    	throw new ClienteNaoExisteException(cliente.getCPF());
     }
     public boolean existe (String cpf) {
     	if (this.cliente != null) {
