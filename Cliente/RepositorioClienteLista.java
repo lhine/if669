@@ -8,7 +8,7 @@ public class RepositorioClienteLista implements RepositorioCliente {
         this.prox = null;
     }
     public void inserir (Cliente cliente) {
-       if (this.cliente != null) {
+       if (this.cliente == null) {
     	   this.cliente = cliente;
     	   this.prox = new RepositorioClienteLista();
        } else prox.inserir(cliente);
@@ -50,7 +50,7 @@ public class RepositorioClienteLista implements RepositorioCliente {
     		if (this.cliente.getCPF().equals(cpf)) {
     			return true;
     		}
-    		if (this.prox.cliente.getCPF().equals(cpf)) {
+    		if (this.prox != null) {
     			this.prox.existe(cpf);
     		}
     	}
