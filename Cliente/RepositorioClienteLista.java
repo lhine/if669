@@ -13,14 +13,14 @@ public class RepositorioClienteLista implements RepositorioCliente {
     	   this.prox = new RepositorioClienteLista();
        } else prox.inserir(cliente);
     }
-    public void remover (Cliente cliente) {
+    public void remover (String cpf) {
     	if (this.cliente != null) {
-    		if (this.cliente.getCPF().equals(cliente.getCPF())) {
+    		if (this.cliente.getCPF().equals(cpf)) {
         		this.cliente = this.prox.cliente;
         		this.prox = this.prox.prox;
         	} 
     		if (this.prox.cliente != null) {
-        		this.prox.remover(cliente);
+        		this.prox.remover(cpf);
         	}
     	} 
     }

@@ -20,10 +20,10 @@ public class RepositorioClienteArray implements RepositorioCliente {
 			inserir(cliente);
 		}
 	}
-	public void remover (Cliente cliente) {
+	public void remover (String cpf) {
 		boolean removeu = false;
 		for (int b = 0; b < this.Indice; b++) {
-			if (clientes[b].getCPF().equals(cliente.getCPF())) {
+			if (clientes[b].getCPF().equals(cpf)) {
 				clientes[b] = null;
 				removeu = true;
 			}
