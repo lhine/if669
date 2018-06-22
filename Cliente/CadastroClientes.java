@@ -30,6 +30,6 @@ public class CadastroClientes {
 			if (this.clientes.existe(cpf)) {
 				this.clientes.procurar(cpf).setPlano(plano);
 			} else throw new ClienteNaoExisteException(cpf);
-		} else throw new PlanoInvalidoException(plano);
+		} else throw new PlanoInvalidoException(cpf);
 	}
 }

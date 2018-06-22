@@ -23,7 +23,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 	public void remover (String cpf) {
 		boolean removeu = false;
 		for (int b = 0; b < this.Indice; b++) {
-			if (clientes[b].getCPF().equals(cpf)) {
+			if (clientes[b].getCPF().equals(cpf) && !removeu) {
 				clientes[b] = null;
 				removeu = true;
 			}
