@@ -4,7 +4,7 @@ import excecoes.LivroNaoEncontradoException;
 import livro.Livro;
 import repositorio.RepositorioLivro;
 
-public class NegociosLivro {
+public class CadastroLivro {
 	private RepositorioLivro repositorioLivro;
 
 	public void CadastroLivro (RepositorioLivro repositorio) {
