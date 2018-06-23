@@ -37,6 +37,5 @@ public class Sebo {
 
 	// Outros metodos de outras classes
 	// Fazer as relações entre as classes, como verificações pra realizar uma venda, etc.
-	
-	
+
 }
