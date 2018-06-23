@@ -1,16 +1,16 @@
 package Fachada;
 
 import Cliente.*;
-// import
+import Livro*;
 // import
 
 public class Sebo {
 	private CadastroClientes clientes;
-	// private CadastroLivros
+	private Cadastrolivro livro;
 	//private CadastroVendas
-	public Sebo(CadastroClientes clientes, //Cadastrolivros livros, CadastroVendas vendas) {
+	public Sebo(CadastroClientes clientes, Cadastrolivro livro, //CadastroVendas vendas) {
 		this.clientes = clientes;
-		// Livros
+		this.livro = livro;
 		// Vendas
 	}
 	public void cadastrarCliente (Cliente cliente) throws ClienteJaCadastradoException {
@@ -28,8 +28,13 @@ public class Sebo {
 	public void mudarPlano (String cpf, Integer plano) throws PlanoInvalidoException, ClienteNaoExisteException {
 		this.clientes.mudarPlano(cpf, plano);
 	}
-	
-	
+	public void inserirLivro (Livro livro) throws AnoInvalidoException {
+		this.livro.inserir(livro);
+	}
+	public boolean procurar (String titulo) throws LivroNaoEncontradoException {
+		return this.repositorioLivro.procurar(titulo);
+	} 
+
 	// Outros metodos de outras classes
 	// Fazer as relações entre as classes, como verificações pra realizar uma venda, etc.
 	
