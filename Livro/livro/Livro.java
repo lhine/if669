@@ -5,16 +5,11 @@ public abstract class Livro {
 	private int ano;
 	private double preco;
 	
-	Livro() {
-		this.titulo = null;
-		this.ano = 0;
-		this.preco = 0.0;
-	}
-	
-	public void inserirLivro (String titulo, int ano) {
+	Livro (String titulo, int ano) throws AnoInvalidoException {
+		if (ano <= 1900 || ano => 2018) {
 			this.titulo = titulo;
 			this.ano = ano;
-			this.preco = 30.0; 
+		} else throw new AnoInvalidoException();
 	}
 	
 	public String getTitulo() {
@@ -28,6 +23,8 @@ public abstract class Livro {
 	public int getAno() {
 		return this.ano;
 	}
-	
-	public abstract double precoModificado();
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+	public abstract void calcularPreco(int ano);
 }

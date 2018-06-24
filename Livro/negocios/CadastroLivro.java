@@ -6,24 +6,22 @@ import repositorio.RepositorioLivro;
 
 public class CadastroLivro {
 	private RepositorioLivro repositorioLivro;
-
-	public void CadastroLivro (RepositorioLivro repositorio) {
+	public CadastroLivro (RepositorioLivro repositorio) {
 		this.repositorioLivro = repositorio;
 	}
-	public boolean procurar (String titulo) throws LivroNaoEncontradoException {
-		if (this.repositorioLivro.procurar(titulo)) {
-			return this.repositorioLivro.procurar(titulo);
-		} 
-		else {
-			throw new LivroNaoEncontradoException();
-		}
+	public void remover (String titulo) throws LivroNaoEncontradoException {
+		if (this.repositorioLivro.existe(titulo)) {
+			this.repositorioLivro.remover(titulo);
+		} else throw new LivroNaoEncontradoException();
 	}
-	public void inserirLivro (Livro livro) throws AnoInvalidoException {
-		if (livro.getAno() >= 1900 && livro.getAno() <= 2018) {
-			this.repositorioLivro.inserir(livro);
-		}
-		else {
-			throw new AnoInvalidoException();
-		}
+	public void atualizar (Livro livro) throws LivroNaoEncontradoException {
+		if (this.repositorioLivro.existe(livro.getTitulo())) {
+			this.repositorioLivro.atualizar(livro);
+		} else throw new LivroNaoEncontradoException();
+	}
+	public Livro procurar (String titulo) throws LivroNaoEncontradoException {
+		if (this.repositorioLivro.existe(titulo)) {
+			return this.procurar(titulo);
+		} else throw new LivroNaoEncontradoException();
 	}
 }
